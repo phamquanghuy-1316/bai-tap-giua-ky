@@ -16,25 +16,25 @@ int main(){
 	scanf("%f",&m);
 	switch(i){
 		case 1:
-			printf("%f USD bang %f VND",m,m*23.500);
+			printf("%f USD bang %f VND",m,m*23500);
 			break;
 		case 2:
-			printf("%f EUR bang %f VND",m,m*25.000);
+			printf("%f EUR bang %f VND",m,m*25000);
 			break;
 		case 3:
-			printf("%f GBP bang %f VND",m,m*28.000);
+			printf("%f GBP bang %f VND",m,m*28000);
 			break;
 		case 4:
 			printf("%f JPY bang %f VND",m,m*180);
 			break;
 		case 5:
-			printf("%f VND bang %f USD",m,m/23.500);
+			printf("%f VND bang %f USD",m,m/23500);
 			break;
 		case 6:
-			printf("%f VND bang %f EUR",m,m/25.000);
+			printf("%f VND bang %f EUR",m,m/25000);
 			break;
 		case 7:
-			printf("%f VND bang %f GBP",m,m/28.000);
+			printf("%f VND bang %f GBP",m,m/28000);
 			break;	
 		case 8:
 			printf("%f VND bang %f JPY",m,m/180);
