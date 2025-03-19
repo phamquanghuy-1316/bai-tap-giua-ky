@@ -1,62 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxGraphModel dx="1683" dy="816" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-  <root>
-    <mxCell id="0" />
-    <mxCell id="1" parent="0" />
-    
-    <!-- Start Node -->
-    <mxCell id="start" value="Bắt đầu" style="ellipse;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="150" y="20" width="80" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Scan Product -->
-    <mxCell id="scan" value="Nhân viên thu ngân quét mã sản phẩm" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="80" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Send Data -->
-    <mxCell id="sendData" value="Máy đọc mã vạch gửi dữ liệu đến máy tính" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="140" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Display Info -->
-    <mxCell id="display" value="Máy tính hiển thị thông tin và tính tổng tiền" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="200" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Request Payment -->
-    <mxCell id="requestPayment" value="Nhân viên thu ngân yêu cầu thanh toán" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="260" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Decision: Payment Type -->
-    <mxCell id="decision" value="Khách hàng thanh toán bằng thẻ?" style="diamond;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="120" y="320" width="140" height="60" as="geometry" />
-    </mxCell>
-    
-    <!-- Use POS -->
-    <mxCell id="usePOS" value="Nhân viên thu ngân sử dụng máy POS" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="400" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Confirm Payment -->
-    <mxCell id="confirm" value="Máy POS xác nhận giao dịch" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="460" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Print Receipt -->
-    <mxCell id="printReceipt" value="Máy tính in hóa đơn" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="520" width="180" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- Give Receipt -->
-    <mxCell id="giveReceipt" value="Nhân viên thu ngân đưa hóa đơn và sản phẩm cho khách hàng" style="rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="100" y="580" width="220" height="40" as="geometry" />
-    </mxCell>
-    
-    <!-- End Node -->
-    <mxCell id="end" value="Kết thúc" style="ellipse;whiteSpace=wrap;" vertex="1" parent="1">
-      <mxGeometry x="150" y="640" width="80" height="40" as="geometry" />
-    </mxCell>
-  </root>
-</mxGraphModel>
+@startuml
+participant "Nhan vien thu ngan" as NV
+participant "May doc ma vach" as BarcodeReader
+participant "May tinh" as PC
+participant "May POS" as POS
+
+NV -> BarcodeReader: Quet ma san pham
+BarcodeReader -> PC: Gui du lieu san pham
+PC -> NV: Hien thi thong tin san pham va tinh tong tien
+NV -> PC: Xac nhan thanh toan
+
+alt Thanh toan bang the
+    NV -> POS: Quet the thanh toan
+    POS -> PC: Gui yeu cau xac nhan giao dich
+    PC -> POS: Xac nhan giao dich
+    POS -> NV: Thanh toan thanh cong
+end
+
+PC -> NV: In hoa don
+NV -> PC: Dua hoa don va san pham
+@enduml
