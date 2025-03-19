@@ -1,21 +1,60 @@
-@startuml
-participant "Nhan vien thu ngan" as NV
-participant "May doc ma vach" as BarcodeReader
-participant "May tinh" as PC
-participant "May POS" as POS
-
-NV -> BarcodeReader: Quet ma san pham
-BarcodeReader -> PC: Gui du lieu san pham
-PC -> NV: Hien thi thong tin san pham va tinh tong tien
-NV -> PC: Xac nhan thanh toan
-
-alt Thanh toan bang the
-    NV -> POS: Quet the thanh toan
-    POS -> PC: Gui yeu cau xac nhan giao dich
-    PC -> POS: Xac nhan giao dich
-    POS -> NV: Thanh toan thanh cong
-end
-
-PC -> NV: In hoa don
-NV -> PC: Dua hoa don va san pham
-@enduml
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1055" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- Máy đọc mã vạch -->
+    <mxCell id="barcodeReader" value="Máy đọc mã vạch" style="swimlane" vertex="1" parent="1">
+      <mxGeometry x="100" y="100" width="150" height="600" as="geometry" />
+    </mxCell>
+    
+    <!-- Máy tính -->
+    <mxCell id="computer" value="Máy tính" style="swimlane" vertex="1" parent="1">
+      <mxGeometry x="300" y="100" width="150" height="600" as="geometry" />
+    </mxCell>
+    
+    <!-- Máy POS -->
+    <mxCell id="posMachine" value="Máy POS" style="swimlane" vertex="1" parent="1">
+      <mxGeometry x="500" y="100" width="150" height="600" as="geometry" />
+    </mxCell>
+    
+    <!-- Nhân viên thu ngân -->
+    <mxCell id="cashier" value="Nhân viên thu ngân" style="swimlane" vertex="1" parent="1">
+      <mxGeometry x="700" y="100" width="150" height="600" as="geometry" />
+    </mxCell>
+    
+    <!-- Hành động -->
+    <mxCell id="scanProduct" value="Quét mã sản phẩm" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="cashier" target="barcodeReader">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="sendData" value="Gửi dữ liệu đến máy tính" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="barcodeReader" target="computer">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="displayInfo" value="Hiển thị thông tin sản phẩm" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="computer" target="cashier">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="requestPayment" value="Yêu cầu thanh toán" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="cashier" target="computer">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="processCard" value="Quẹt thẻ thanh toán" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="cashier" target="posMachine">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="confirmTransaction" value="Xác nhận giao dịch" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="posMachine" target="computer">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="printReceipt" value="In hóa đơn" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="computer" target="cashier">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="giveReceipt" value="Đưa hóa đơn và sản phẩm cho khách hàng" style="edgeStyle=elbowEdgeStyle" edge="1" parent="1" source="cashier">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>
